@@ -1,0 +1,4 @@
+app/etc/modules/DMC_Solr.xml	app/etc/modules/DMC_Solr.xml
+app/code/local/DMC		app/code/local/DMC
+lib/Apache			lib/Apache
+
