@@ -10,7 +10,8 @@
 
 class DMC_Solr_Model_Indexer extends Mage_Index_Model_Indexer_Abstract
 {
-	const PRODUCTS_BY_PERIOD = 100;
+    const PRODUCTS_BY_PERIOD = 'solr/general/max_count_before_post';
+    const PERIODS_BY_SESSION = 'solr/general/send_post_in_own_session';
 	
 	protected function _getSolr()
 	{
@@ -115,7 +116,7 @@ class DMC_Solr_Model_Indexer extends Mage_Index_Model_Indexer_Abstract
 					else {
 						//echo $item->id.' !! ';
 					}
-					if ($i == self::PRODUCTS_BY_PERIOD) {
+					if ($i == Mage::getStoreConfig(self::PRODUCTS_BY_PERIOD) ) {
 						$solr->addDocuments();
 
                         file_put_contents( Mage::getBaseDir('base') .'/solrLastId.mem',

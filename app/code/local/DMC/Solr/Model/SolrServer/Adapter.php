@@ -26,7 +26,12 @@ class DMC_Solr_Model_SolrServer_Adapter extends Apache_Solr_Service
 	protected $_error = false;
 	protected $_lastPing = NULL;
 	protected $_solrServerUrl = null;
-	
+
+    /**
+     * @var Apache_Solr_HttpTransport_Interface
+     */
+    protected $_httpTransport = null;
+
 	public function __construct() {
 		$url = $this->getSolrServerUrl();
 		$url = parse_url($url);
@@ -35,7 +40,22 @@ class DMC_Solr_Model_SolrServer_Adapter extends Apache_Solr_Service
 		}
 		
 	}
-	
+
+    public function setHttpTransport( Apache_Solr_HttpTransport_Interface $transport )
+    {
+        $this->_httpTransport = $transport;
+    }
+
+    public function getHttpTransport()
+    {
+        if ($this->_httpTransport == null)
+        {
+            $this->_httpTransport = new Apache_Solr_HttpTransport_Curl();
+        }
+
+        return $this->_httpTransport;
+    }
+
 	public function getSolrServerUrl() {
 		if(is_null($this->_solrServerUrl)) {
 			if(strlen(Mage::getStoreConfig('solr/general/server_url'))) {

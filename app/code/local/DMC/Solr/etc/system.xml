@@ -66,20 +66,23 @@
                         <show_in_website>0</show_in_website>
                         <show_in_store>0</show_in_store>
                       </max_count_before_post>
-
-                      <max_posts_in_one_session translate="label">
-                        <label>Maximum send actions in one session</label>
-                        <comment><![CDATA[there is a bug in php which will lead to "out of memory exception"
-                        when doing to much requests in one session > workaround: send some requests and then
-                        start a new session<br>the ideal value depends on your max_memory settings in php.ini<br>
-                        lower values are more safe but reindexing will take longer]]></comment>
+<!--
+                      <send_post_in_own_session translate="label">
+                        <label>Send documents to Solr in own Session</label>
+                        <comment><![CDATA[There is a bug in php which will lead to "out of memory exception"
+                        when doing to much requests in one session > workaround: send requests in single session.<br>
+                        First try leaving this off, if reindexing never completes, try switching it on<br>
+                        the ideal value depends on your max_memory settings in php.ini and your product count.<br>
+                        If you enable this, every post is send in its own session so raise the number of products per post<br>
+                        else the reindexing will take much longer.]]></comment>
                         <frontend_type>text</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
                         <sort_order>34</sort_order>
                         <show_in_default>1</show_in_default>
                         <show_in_website>0</show_in_website>
                         <show_in_store>0</show_in_store>
-                      </max_posts_in_one_session>
-
+                      </send_post_in_own_session>
+-->
                         <enable_on_catalog translate="label">
                             <label>Enable Solr on catalog</label>
                             <frontend_type>select</frontend_type>

@@ -15,11 +15,14 @@ class DMC_Solr_Helper_Data extends Mage_Core_Helper_Data
 	private $_enabled = null;
 	private $_cacheVersion = null;
         
-        private $_enabledOnCatalog = null;
-        private $_enabledOnSearchResult = null;
+    private $_enabledOnCatalog = null;
+    private $_enabledOnSearchResult = null;
 	
-	const PRODUCTS_BY_PERIOD = 100;
-	
+	const PRODUCTS_BY_PERIOD = 'solr/general/max_count_before_post';
+    const PERIODS_BY_SESSION = 'solr/general/send_post_in_own_session';
+
+    public $postsInSession = 0;
+
 	public function getSolr()
 	{
 		return Mage::getSingleton('DMC_Solr_Model_SolrServer_Adapter');
