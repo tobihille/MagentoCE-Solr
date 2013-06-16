@@ -48,7 +48,7 @@
  * }
  * </code>
  */
-class DMC_Solr_Model_SolrServer_Document implements Iterator
+class DMC_Solr_Model_SolrServer_Document extends Apache_Solr_Document //implements Iterator
 {
 	protected $_type = null;
 	

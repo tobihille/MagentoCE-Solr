@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <DMC_Solr>
+            <active>true</active>
+            <codePool>local</codePool>
+            <extension_name>Magento Solr</extension_name>
+        </DMC_Solr>
+    </modules>
+</config>

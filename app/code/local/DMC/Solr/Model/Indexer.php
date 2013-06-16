@@ -91,10 +91,19 @@ class DMC_Solr_Model_Indexer extends Mage_Index_Model_Indexer_Abstract
 		
 		if($solr) {
 			foreach($types as $name => $class) {
-				$solr->deleteDocuments($name, $store->getId());
+
+                $lastId = file_get_contents( Mage::getBaseDir('base') .'/solrLastId.mem' );
+
+                if ( !$lastId )
+                    $solr->deleteDocuments($name, $store->getId());
+
 				$adapter = new $class();
 				$items = $adapter->getSourceCollection();
 				foreach($items as $item) {
+
+                    if ($item->getEntity_id() <= $lastId )
+                        continue;
+
 					$doc = $adapter->getSolrDocument();
 					if($doc->setObject($item)) {
 						$doc->setStoreId($store->getId());
@@ -108,9 +117,14 @@ class DMC_Solr_Model_Indexer extends Mage_Index_Model_Indexer_Abstract
 					}
 					if ($i == self::PRODUCTS_BY_PERIOD) {
 						$solr->addDocuments();
+
+                        file_put_contents( Mage::getBaseDir('base') .'/solrLastId.mem',
+                            $item->getEntity_id() );
 						$i = 0;
 					}
 				}
+
+                unlink( Mage::getBaseDir('base') .'/solrLastId.mem' );
 			}
 			$solr->addDocuments();
 			$solr->commit();

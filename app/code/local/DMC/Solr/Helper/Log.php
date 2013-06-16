@@ -27,7 +27,7 @@ class DMC_Solr_Helper_Log extends Mage_Core_Helper_Data
 	public function addMessage($message)
 	{
 		if(Mage::helper('solr')->isLogMode()) {
-			Mage::log($message, 7, $this->getLogFileName());
+			//Mage::log($message, 7, $this->getLogFileName());
 		}
 		return $this;
 	}
