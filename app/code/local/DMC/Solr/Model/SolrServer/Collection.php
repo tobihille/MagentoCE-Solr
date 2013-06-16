@@ -9,7 +9,7 @@
  */
 
 $LIB_PATH = Mage::getBaseDir('lib').DS.'DMC'.DS.'Solr';
-require_once $LIB_PATH.DS.'Service.php';
+//require_once $LIB_PATH.DS.'Service.php';
 
 class DMC_Solr_Model_SolrServer_Collection extends Varien_Data_Collection
 {

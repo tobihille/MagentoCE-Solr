@@ -11,9 +11,18 @@ class DMC_Solr_IndexController extends Mage_Core_Controller_Front_Action
 {
 	public function indexAction()
 	{
-		$solr = Mage::helper('solr')->getSolr();
+        /**
+         * @type DMC_Solr_Model_SolrServer_Adapter
+         */
+        $solr = Mage::helper('solr')->getSolr();
 		$solr->delete();
 	}
+
+    public function incIndexAction()
+    {
+        $solr = Mage::helper('solr')->getSolr();
+
+    }
 
 	public function livesearchAction()
 	{
