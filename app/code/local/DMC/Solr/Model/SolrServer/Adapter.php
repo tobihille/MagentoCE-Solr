@@ -268,7 +268,25 @@ class DMC_Solr_Model_SolrServer_Adapter extends Apache_Solr_Service
 	}
 	
 	protected function clearDocuments() {
-		$this->_products = array();
+        foreach ( $this->_products as &$product)
+        {
+            /**
+             * @var DMC_Solr_Model_SolrServer_Adapter_Product_Document
+             */
+            $product = $product;
+
+            $fields = $product->getFieldNames();
+
+            foreach ( $fields as $field )
+            {
+                unset($product->$field);
+            }
+
+            $product->getObject->clearInstance();
+            $product->clear();
+            unset($product);
+        }
+        $this->_products = array();
 	}
 	
 	public function deleteDocument($object)
