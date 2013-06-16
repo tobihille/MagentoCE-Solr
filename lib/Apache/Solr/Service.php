@@ -732,7 +732,7 @@ class Apache_Solr_Service
 
 		$rawPost .= '</add>';
 
-		return $this->add($rawPost);
+h		return $this->add($rawPost);
 	}
 
 	/**
