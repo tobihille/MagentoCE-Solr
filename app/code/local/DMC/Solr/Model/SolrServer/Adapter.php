@@ -282,7 +282,7 @@ class DMC_Solr_Model_SolrServer_Adapter extends Apache_Solr_Service
                 unset($product->$field);
             }
 
-            $product->getObject->clearInstance();
+            $product->getObject()->clearInstance();
             $product->clear();
             unset($product);
         }
