@@ -37,24 +37,25 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </enable>
-                        <server_url translate="label">
-                            <label>Solr Server Url</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>20</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </server_url>
-                        <ping translate="label">
-                            <label>Ping Solr Server</label>
-                            <frontend_type>button</frontend_type>
-                            <frontend_model>DMC_Solr_Block_Adminhtml_System_Buttons_Ping</frontend_model>
-                            <sort_order>30</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </ping>
-                        
+                      <server_url translate="label">
+                        <label>Solr Server Url</label>
+                        <comment>Enter full URL to Core e.g. http://127.0.0.1:8080/solr/core0/</comment>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>20</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                      </server_url>
+                      <ping translate="label">
+                        <label>Ping Solr Server</label>
+                        <comment>uses saved settings</comment>
+                        <frontend_type>button</frontend_type>
+                        <frontend_model>DMC_Solr_Block_Adminhtml_System_Buttons_Ping</frontend_model>
+                        <sort_order>30</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                      </ping>
                         <enable_on_catalog translate="label">
                             <label>Enable Solr on catalog</label>
                             <frontend_type>select</frontend_type>
@@ -93,7 +94,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment>Add activity will be added to the "/var/log/solr.log" file.</comment>
+                            <comment>Add activity will be added to the "var/log/solr.log" file.</comment>
                         </log>
                     </fields>
                 </general>
