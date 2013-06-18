@@ -61,7 +61,7 @@
 			<indexer>
 				<solr_indexer>
 					<model>solr/indexer</model>
-					<depends>
+					<!-- <depends>
 						<cataloginventory_stock />
 						<catalog_product_attribute />
 						<catalog_product_price />
@@ -71,7 +71,7 @@
 						<minimal_price />
 						<catalogsearch_fulltext />
 						<tag_summary />
-					</depends>
+					</depends> -->
 				</solr_indexer>
 			</indexer>
 		</index>

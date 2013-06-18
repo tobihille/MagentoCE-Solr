@@ -93,13 +93,32 @@ class DMC_Solr_Model_Indexer extends Mage_Index_Model_Indexer_Abstract
 		if($solr) {
 			foreach($types as $name => $class) {
 
-                $lastId = file_get_contents( Mage::getBaseDir('base') .'/solrLastId.mem' );
+                $lastId = 0;
 
-                if ( !$lastId )
-                    $solr->deleteDocuments($name, $store->getId());
+                while ( $lastId !== 'complete' )
+                {
+                    $lastId = file_get_contents( Mage::getBaseDir('base') .'/solrLastId.mem' );
 
-				$adapter = new $class();
+                    if ( empty($lastId) )
+                    {
+                        $lastId = 0;
+                        $solr->deleteDocuments($name, $store->getId());
+                    }
+
+                    $url = Mage::getUrl('solr/adminhtml_index/incindex', array(
+                        'lastid' => $lastId,
+                        'class' => $class,
+                        'storeid' => $store->getId(),
+                    ) );
+                    $curl = curl_init($url.'?XDEBUG_SESSION=netbeans-xdebug');
+//                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_exec($curl);
+                    curl_close($curl);
+                }
+                /*
+                $adapter = new $class();
 				$items = $adapter->getSourceCollection();
+                $i = 0;
 				foreach($items as $item) {
 
                     if ($item->getEntity_id() <= $lastId )
@@ -124,11 +143,10 @@ class DMC_Solr_Model_Indexer extends Mage_Index_Model_Indexer_Abstract
 						$i = 0;
 					}
 				}
+                */
 
                 unlink( Mage::getBaseDir('base') .'/solrLastId.mem' );
 			}
-			$solr->addDocuments();
-			$solr->commit();
 			$solr->optimize();
 		}
 	}

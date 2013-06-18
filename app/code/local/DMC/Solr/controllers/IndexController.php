@@ -18,13 +18,7 @@ class DMC_Solr_IndexController extends Mage_Core_Controller_Front_Action
 		$solr->delete();
 	}
 
-    public function incIndexAction()
-    {
-        $solr = Mage::helper('solr')->getSolr();
-
-    }
-
-	public function livesearchAction()
+    public function livesearchAction()
 	{
 		if (!$this->getRequest()->getParam('q', false)) {
 			$this->getResponse()->setRedirect(Mage::getSingleton('core/url')->getBaseUrl());

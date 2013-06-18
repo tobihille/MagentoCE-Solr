@@ -93,6 +93,8 @@ class Apache_Solr_HttpTransport_Curl extends Apache_Solr_HttpTransport_Abstract
 
 	public function performGetRequest($url, $timeout = false)
 	{
+        $this->__construct();
+
 		// check the timeout value
 		if ($timeout === false || $timeout <= 0.0)
 		{
@@ -122,11 +124,17 @@ class Apache_Solr_HttpTransport_Curl extends Apache_Solr_HttpTransport_Abstract
 		$statusCode = curl_getinfo($this->_curl, CURLINFO_HTTP_CODE);
 		$contentType = curl_getinfo($this->_curl, CURLINFO_CONTENT_TYPE);
 
-		return new Apache_Solr_HttpTransport_Response($statusCode, $contentType, $responseBody);
+        $return = new Apache_Solr_HttpTransport_Response($statusCode, $contentType, $responseBody);
+
+        curl_close($this->_curl);
+
+        return $return;
 	}
 
 	public function performHeadRequest($url, $timeout = false)
 	{
+        $this->__construct();
+
 		// check the timeout value
 		if ($timeout === false || $timeout <= 0.0)
 		{
@@ -153,11 +161,17 @@ class Apache_Solr_HttpTransport_Curl extends Apache_Solr_HttpTransport_Abstract
 		$statusCode = curl_getinfo($this->_curl, CURLINFO_HTTP_CODE);
 		$contentType = curl_getinfo($this->_curl, CURLINFO_CONTENT_TYPE);
 
-		return new Apache_Solr_HttpTransport_Response($statusCode, $contentType, $responseBody);
+        $return = new Apache_Solr_HttpTransport_Response($statusCode, $contentType, $responseBody);
+
+        curl_close($this->_curl);
+
+        return $return;
 	}
 
 	public function performPostRequest($url, $postData, $contentType, $timeout = false)
 	{
+        $this->__construct();
+
 		// check the timeout value
 		if ($timeout === false || $timeout <= 0.0)
 		{
@@ -193,6 +207,10 @@ class Apache_Solr_HttpTransport_Curl extends Apache_Solr_HttpTransport_Abstract
 		$statusCode = curl_getinfo($this->_curl, CURLINFO_HTTP_CODE);
 		$contentType = curl_getinfo($this->_curl, CURLINFO_CONTENT_TYPE);
 
-		return new Apache_Solr_HttpTransport_Response($statusCode, $contentType, $responseBody);
+        $return = new Apache_Solr_HttpTransport_Response($statusCode, $contentType, $responseBody);
+
+        curl_close($this->_curl);
+
+		return $return;
 	}
 }

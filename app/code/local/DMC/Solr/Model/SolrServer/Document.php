@@ -62,7 +62,16 @@ class DMC_Solr_Model_SolrServer_Document extends Apache_Solr_Document //implemen
 	{
 		$this->_fields['row_type'] = $this->getType();
 	}
-	
+
+    public function clear()
+    {
+        $this->_object = array();
+        $this->_storeId = null;
+        $this->_type = null;
+
+        parent::clear();
+    }
+
 	public function getStoreId()
 	{
 		return $this->_storeId;
