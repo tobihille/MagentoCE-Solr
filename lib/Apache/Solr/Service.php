@@ -85,6 +85,11 @@ require_once(dirname(__FILE__) . '/HttpTransport/Interface.php');
  */
 class Apache_Solr_Service
 {
+    /**
+     * Response version we support
+     */
+    const SOLR_VERSION = '2.2';
+
 	/**
 	 * SVN Revision meta data for this class
 	 */
