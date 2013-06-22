@@ -30,11 +30,23 @@ class DMC_Solr_Model_SolrServer_Adapter_Product extends DMC_Solr_Model_SolrServe
 	
 	public function getSourceCollection($storeId = null)
 	{
-		$collection = Mage::getModel('catalog/product')->getCollection();
-		if(!is_null($storeId)) {
-			$collection->addStoreFilter($storeId);
-		}
-		return $collection;
+        if(!is_null($storeId))
+        {
+            $store = Mage::getModel('core/store')->load($storeId)->getCode();
+
+            Mage::app()->setCurrentStore($store);
+
+            return Mage::getModel('catalog/product')->
+                getCollection()->
+                //addStoreFilter($storeId)->//$website)->
+                addAttributeToFilter('status', 1)->
+                addAttributeToFilter('visibility', 4)->
+                setOrder('entity_id', 'asc');
+        }
+        else
+        {
+            return Mage::getModel('catalog/product')->getCollection();
+        }
 	}
 	
 	public function processEvent(Mage_Index_Model_Event $event)

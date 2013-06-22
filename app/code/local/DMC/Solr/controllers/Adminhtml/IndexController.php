@@ -21,16 +21,18 @@ class DMC_Solr_Adminhtml_IndexController extends Mage_Core_Controller_Front_Acti
         $storeId = $this->getRequest()->getParam('storeid');
 
         $adapter = new $class();
-        $items = $adapter->getSourceCollection();
+        $items = $adapter->getSourceCollection($storeId);
         $entityId = null;
 
         foreach($items as $item)
         {
             $entityId = $item->getEntity_id();
-            if ($entityId <= $lastId )
+
+            if ($entityId <= $lastId ) //already added
                 continue;
 
             $doc = $adapter->getSolrDocument();
+
             if($doc->setObject($item)) {
                 $doc->setStoreId($storeId);
                 if(!$solr->addDocument($doc)) {

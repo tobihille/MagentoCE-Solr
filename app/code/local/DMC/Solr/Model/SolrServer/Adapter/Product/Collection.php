@@ -251,7 +251,6 @@ class DMC_Solr_Model_SolrServer_Adapter_Product_Collection extends Varien_Data_C
     public function setStore($store)
     {
         $this->setStoreId(Mage::app()->getStore($store)->getId());
-        
         return $this;
     }
 
